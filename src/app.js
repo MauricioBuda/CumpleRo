@@ -13,7 +13,15 @@ const segundos = document.querySelector("#segundos");
 const contador = document.querySelector("#contador");
 const contenido = document.querySelector("#contenido");
 
+const background = document.querySelector("#background");
+
 const particles = document.querySelector("#particles");
+const confetti = document.querySelector("#confetti");
+const sparkles = document.querySelector("#sparkles");
+
+const musica = document.querySelector("#musicaFondo");
+
+const btnMusica = document.querySelector("#btnMusica");
 
 // =========================================
 // FECHAS
@@ -27,7 +35,7 @@ const particles = document.querySelector("#particles");
 // Para probar el proyecto solamente cambiá ESTA fecha.
 // Las demás etapas se calculan automáticamente.
 
-const cumpleaños = new Date(2026, 6, 19, 0, 0, 0);
+const cumpleaños = new Date(2026, 6, 7, 0, 0, 0);
 
 // ----- ETAPA 13 HS -----
 
@@ -77,6 +85,97 @@ function guardarEstado() {
 
 }
 
+
+
+async function iniciarMusica(cancion) {
+
+    // Si ya está sonando esa misma canción, no hacemos nada
+    if (musica.src.endsWith(cancion) && !musica.paused) {
+
+        return;
+
+    }
+
+    // ==========================
+    // BAJAR VOLUMEN
+    // ==========================
+
+    while (musica.volume > 0.02 && !musica.paused) {
+
+        musica.volume -= 0.02;
+
+        await esperar(60);
+
+    }
+
+    musica.pause();
+
+    musica.currentTime = 0;
+
+    // ==========================
+    // CAMBIAR CANCIÓN
+    // ==========================
+
+    musica.src = cancion;
+
+    localStorage.setItem("musicaActual", cancion);
+
+    musica.load();
+
+    musica.volume = 0;
+
+    try {
+
+        await musica.play();
+
+        // ==========================
+        // SUBIR VOLUMEN
+        // ==========================
+
+        while (musica.volume < 0.18) {
+
+            musica.volume += 0.02;
+
+            if (musica.volume > 0.18) {
+
+                musica.volume = 0.18;
+
+            }
+
+            await esperar(60);
+
+        }
+
+        btnMusica.textContent = "🔊";
+
+        localStorage.setItem("musica", "on");
+
+    }
+
+    catch (error) {
+
+        console.log("La reproducción fue bloqueada.");
+
+        btnMusica.textContent = "🔇";
+
+    }
+
+}
+
+
+
+function detenerMusica(){
+
+    musica.pause();
+
+    btnMusica.textContent = "🔇";
+
+    localStorage.setItem("musica","off");
+
+}
+
+
+
 function cargarEstado() {
 
     const estado = JSON.parse(
@@ -119,6 +218,121 @@ const preguntasEtapa1 = [
 
 ];
 
+
+
+
+const preguntasEtapa2 = [
+
+    {
+
+        pregunta: "Mes en el que nos conocimos",
+        respuesta: "Agosto",
+
+        memeCorrecto: "/img/memes/correcto1.png",
+        memeIncorrecto: "/img/memes/incorrecto1.jpg"
+
+    },
+
+    {
+
+        pregunta: "(Mi número preferido de la ruleta) x (Día que salimos para el viaje de egresados) - (Tu día de cumple) x (Mi dia de cumple)",
+        respuesta: "59",
+
+        memeCorrecto: "/img/memes/correcto2.png",
+        memeIncorrecto: "/img/memes/incorrecto2.png"
+
+    },
+
+    {
+
+        pregunta: "Primer apodo de la gorda (diminutivo)",
+        respuesta: "Carbonsito",
+
+        memeCorrecto: "/img/memes/correcto3.png",
+        memeIncorrecto: "/img/memes/incorrecto3.png"
+
+    }
+
+];
+
+
+
+
+const preguntasEtapa3 = [
+
+    {
+
+        pregunta: "(La cantidad de letras de tus nombres + apellido) + (Lo mismo pero con mis datos) + (mi DNI - tu DNI)",
+        respuesta: "885502",
+
+        memeCorrecto: "/img/memes/correcto1.png",
+        memeIncorrecto: "/img/memes/incorrecto1.jpg"
+
+    },
+
+    {
+
+        pregunta: "Apodo del único novio registrado de kika",
+        respuesta: "Mexicano",
+
+        memeCorrecto: "/img/memes/correcto2.png",
+        memeIncorrecto: "/img/memes/incorrecto2.png"
+
+    },
+
+    {
+
+        pregunta: "Uno de los emprendimientos de nuestro angelito papin (se que hay varios, pero es uno solo el correcto acá)",
+        respuesta: "El rey goma",
+
+        memeCorrecto: "/img/memes/correcto3.png",
+        memeIncorrecto: "/img/memes/incorrecto3.png"
+
+    }
+
+];
+
+
+const preguntasEtapaFinal = [
+
+    {
+
+        pregunta: "Frase épica de tu papá el día que le preguntamos si quería algo del chino",
+        respuesta: "Crema de leche",
+
+        memeCorrecto: "/img/memes/correcto1.png",
+        memeIncorrecto: "/img/memes/incorrecto1.jpg"
+
+    },
+
+    {
+
+        pregunta: "Suma de cada uno de los número de mi DNI",
+        respuesta: "38",
+
+        memeCorrecto: "/img/memes/correcto2.png",
+        memeIncorrecto: "/img/memes/incorrecto2.png"
+
+    },
+
+    {
+
+        pregunta: "Quien dijo TE AMO primero? Mauri o roci?",
+        respuesta: "Mauri",
+
+        memeCorrecto: "/img/memes/correcto3.png",
+        memeIncorrecto: "/img/memes/incorrecto3.png"
+
+    }
+
+];
+
+
+
+
+
+let preguntas = preguntasEtapa1;
+
 // =========================================
 // MENSAJES
 // =========================================
@@ -136,7 +350,7 @@ function obtenerMensaje(restante) {
     }
 
     if (diasRestantes > 3) {
-        return "Una semana más... prometo que la espera va a valer la pena.";
+        return "Menos de una semana más... prometo que la espera va a valer la pena.";
     }
 
     if (diasRestantes > 1) {
@@ -200,6 +414,8 @@ aventuraComenzada = true;
 
 guardarEstado();
 
+iniciarMusica("/audio/etapa1.mp3");
+
 iniciarIntroduccion();
 
     };
@@ -217,7 +433,9 @@ async function iniciarIntroduccion() {
 
         "Es porque por fin llegó el día.",
 
-        "Feliz cumpleaños ❤️"
+        "Feliz cumpleaños ❤️",
+
+        "Vamos a hacer un juego de preguntas sencillas jeje:"
 
     ];
 
@@ -254,9 +472,11 @@ async function iniciarIntroduccion() {
 
 function mostrarPrimerAcertijo() {
 
+    preguntas = preguntasEtapa1;
+
     preguntaActual = 0;
 
-guardarEstado();
+    guardarEstado();
 
     mostrarPregunta();
 
@@ -265,9 +485,184 @@ guardarEstado();
 
 
 
+function terminarEtapa() {
+
+    switch (etapa) {
+
+        // ==========================
+        // ETAPA 1
+        // ==========================
+
+        case 1:
+
+            titulo.textContent = "❤️ Excelente ❤️";
+
+            mensaje.textContent = "";
+
+            contenido.innerHTML = `
+
+                <div class="fade">
+
+                    <h2>
+
+                        Terminaste el primer desafío, hermosa.
+                        Demostraste una gran sabiduría.
+                        El premio a esta hazaña lo vas a encontrar
+                        adentro de una cartera tuya 😏
+
+                    </h2>
+
+                    <br>
+
+                    <button id="continuar">
+
+                        Continuar ❤️
+
+                    </button>
+
+                </div>
+
+            `;
+
+            document
+                .querySelector("#continuar")
+                .onclick = () => {
+
+                    etapa = 2;
+
+                    guardarEstado();
+
+                    actualizarCuentaRegresiva();
+
+                };
+
+        break;
+
+
+
+        // ==========================
+        // ETAPA 3
+        // ==========================
+
+        case 3:
+
+            titulo.textContent = "❤️ Excelente ❤️";
+
+            mensaje.textContent = "";
+
+            contenido.innerHTML = `
+
+                <div class="fade">
+
+                    <h2>
+
+                        Me seguis soprendiendo con tanta genialidad. Espero que esta experiencia no esté siendo tediosa. Para que no te aburras, revisá las valijas de viaje jeje
+
+                    </h2>
+
+                    <br>
+
+                    <button id="continuar">
+
+                        Continuar ❤️
+
+                    </button>
+
+                </div>
+
+            `;
+
+            document
+                .querySelector("#continuar")
+                .onclick = () => {
+
+                    etapa = 4;
+
+                    guardarEstado();
+
+                    actualizarCuentaRegresiva();
+
+                };
+
+        break;
+
+
+        // ==========================
+// ETAPA 5
+// ==========================
+
+case 5:
+
+    titulo.textContent = "❤️ Excelente ❤️";
+
+    mensaje.textContent = "";
+
+    contenido.innerHTML = `
+
+        <div class="fade">
+
+            <h2>
+
+                Wow! Ese cerebro está sacando chispas! (con tono de Negan se puede leer je). Para motivarte y que no me odies, podes revisar el en la caja de mi monitor ❤️ 
+
+            </h2>
+
+            <br>
+
+            <button id="continuar">
+
+                Continuar ❤️
+
+            </button>
+
+        </div>
+
+    `;
+
+    document
+        .querySelector("#continuar")
+        .onclick = () => {
+
+            etapa = 6;
+
+            guardarEstado();
+
+            actualizarCuentaRegresiva();
+
+        };
+
+break;
+
+
+// ==========================
+// ETAPA 7 (FINAL)
+// ==========================
+
+case 7:
+
+    mostrarCelebracionFinal();
+
+break;
+
+    }
+
+}
+
+
+
+
 function mostrarPregunta() {
 
+    if (preguntaActual >= preguntas.length) {
+
+        terminarEtapa();
+        return;
+
+    }
+
     const p = preguntas[preguntaActual];
+
+    guardarEstado();
 
     titulo.textContent = `Pregunta ${preguntaActual + 1} de ${preguntas.length}`;
 
@@ -281,10 +676,13 @@ function mostrarPregunta() {
 
             <br>
 
-            <input
-                id="respuestaUsuario"
-                autocomplete="off"
-                placeholder="Escribí tu respuesta">
+        <input
+            id="respuestaUsuario"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="none"
+            spellcheck="false"
+            placeholder="Escribí tu respuesta">
 
             <br>
 
@@ -298,9 +696,26 @@ function mostrarPregunta() {
 
     `;
 
+
     document
         .querySelector("#btnResponder")
         .onclick = verificarRespuesta;
+
+        document
+    .querySelector("#respuestaUsuario")
+    .addEventListener("keydown", (evento) => {
+
+        if (evento.key === "Enter") {
+
+            verificarRespuesta();
+
+        }
+
+    });
+
+    document
+    .querySelector("#respuestaUsuario")
+    .focus();
 
 }
 
@@ -309,6 +724,10 @@ function mostrarPregunta() {
 function verificarRespuesta() {
 
     const p = preguntas[preguntaActual];
+
+    const boton = document.querySelector("#btnResponder");
+
+    boton.disabled = true;
 
     const respuesta = document
         .querySelector("#respuestaUsuario")
@@ -370,50 +789,11 @@ async function mostrarMeme(correcto) {
 
 guardarEstado();
 
-        if (preguntaActual >= preguntas.length) {
+if (preguntaActual >= preguntas.length) {
 
-            titulo.textContent = "❤️ Excelente ❤️";
+    terminarEtapa();
 
-            mensaje.textContent = "";
-
-            contenido.innerHTML = `
-
-                <div class="fade">
-
-                    <h2>
-
-                        Terminaste el primer desafío, hermosa.
-                        Demostraste una gran sabiduría.
-                        El premio a esta hazaña lo vas a encontrar
-                        adentro de una cartera tuya 😏
-
-                    </h2>
-
-                    <br>
-
-                    <button id="continuar">
-
-                        Continuar ❤️
-
-                    </button>
-
-                </div>
-
-            `;
-
-document
-    .querySelector("#continuar")
-    .onclick = () => {
-
-        etapa = 2;
-
-        guardarEstado();
-
-        actualizarCuentaRegresiva();
-
-    };
-
-        }
+}
 
         else {
 
@@ -451,29 +831,236 @@ function mostrarEtapa() {
 
             return;
 
+case 3:
+
+    titulo.textContent = "❤️ Ya son las 13:00 ❤️";
+
+    mensaje.textContent = "¿Lista para el segundo desafío?";
+
+    contador.style.display = "none";
+
+    contenido.innerHTML = `
+
+        <div class="fade">
+
+            <button id="btnEtapa2">
+
+                Comenzar ❤️
+
+            </button>
+
+        </div>
+
+    `;
+
+document
+    .querySelector("#btnEtapa2")
+    .onclick = () => {
+
+        etapa = 3;
+
+        preguntas = preguntasEtapa2;
+
+        preguntaActual = 0;
+
+        guardarEstado();
+
+        iniciarMusica("/audio/etapa2.mp3");
+
+        mostrarPregunta();
+
+    };
+
+    return;
+
+case 4:
+
+    mostrarEspera18();
+
+    return;
+
+case 5:
+
+    titulo.textContent = "❤️ Ya son las 18:00 ❤️";
+
+    mensaje.textContent = "¿Lista para el tercer desafío?";
+
+    contador.style.display = "none";
+
+    contenido.innerHTML = `
+
+        <div class="fade">
+
+            <button id="btnEtapa3">
+
+                Comenzar ❤️
+
+            </button>
+
+        </div>
+
+    `;
+
+document
+    .querySelector("#btnEtapa3")
+    .onclick = () => {
+
+        etapa = 5;
+
+        preguntas = preguntasEtapa3;
+
+        preguntaActual = 0;
+
+        guardarEstado();
+
+        iniciarMusica("/audio/etapa3.mp3");
+
+        mostrarPregunta();
+
+    };
+
+    return;
+
+
+    case 6:
+
+    mostrarEspera23();
+
+    return;
+
+case 7:
+
+    titulo.textContent = "❤️ Ya son las 23:00 ❤️";
+
+    mensaje.textContent = "Última sorpresa... ❤️";
+
+    contador.style.display = "none";
+
+    contenido.innerHTML = `
+
+        <div class="fade">
+
+            <button id="btnFinal">
+
+                Comenzar ❤️
+
+            </button>
+
+        </div>
+
+    `;
+
+document
+    .querySelector("#btnFinal")
+    .onclick = () => {
+
+        etapa = 7;
+
+        preguntas = preguntasEtapaFinal;
+
+        preguntaActual = 0;
+
+        guardarEstado();
+
+        iniciarMusica("/audio/final.mp3");
+
+        mostrarPregunta();
+
+    };
+
+    return;
+    }
+
+}
+
+
+
+
+function reanudarAventura() {
+
+    switch (etapa) {
+
+        // ==========================
+        // PRIMER ACERTIJO
+        // ==========================
+
+        case 1:
+
+            preguntas = preguntasEtapa1;
+
+            mostrarPregunta();
+
+        break;
+
+
+        // ==========================
+        // ESPERA 13 HS
+        // ==========================
+
+        case 2:
+
+            mostrarEspera13();
+
+        break;
+
+
+        // ==========================
+        // SEGUNDO ACERTIJO
+        // ==========================
+
         case 3:
 
-            titulo.textContent = "❤️ Ya son las 13:00 ❤️";
+            preguntas = preguntasEtapa2;
 
-            mensaje.textContent = "";
+            mostrarPregunta();
 
-            contador.style.display = "none";
+        break;
 
-            contenido.innerHTML = `
 
-                <div class="fade">
+        // ==========================
+        // ESPERA 18 HS
+        // ==========================
 
-                    <button id="btnEtapa2">
+        case 4:
 
-                        Comenzar ❤️
+            mostrarEspera18();
 
-                    </button>
+        break;
 
-                </div>
 
-            `;
+        // ==========================
+        // TERCER ACERTIJO
+        // ==========================
 
-            return;
+        case 5:
+
+            preguntas = preguntasEtapa3;
+
+            mostrarPregunta();
+
+        break;
+
+
+        // ==========================
+        // ESPERA 23 HS
+        // ==========================
+
+        case 6:
+
+            mostrarEspera23();
+
+        break;
+
+
+        // ==========================
+        // ETAPA FINAL
+        // ==========================
+
+        case 7:
+
+            mostrarEtapa();
+
+        break;
 
     }
 
@@ -491,6 +1078,69 @@ function mostrarEspera13() {
     mensaje.textContent = "Disfrutá tu primer regalo ❤️";
 
     contenido.innerHTML = "";
+
+}
+
+function mostrarEspera18(){
+
+    contador.style.display = "flex";
+
+    titulo.textContent = "❤️ Nos vemos a las 18:00 ❤️";
+
+    mensaje.textContent = "Todavía quedan sorpresas ❤️";
+
+    contenido.innerHTML = "";
+
+}
+
+
+function mostrarEspera23(){
+
+    contador.style.display = "flex";
+
+    titulo.textContent = "❤️ Nos vemos a las 23:00 ❤️";
+
+    mensaje.textContent = "Ya falta muy poquito ❤️";
+
+    contenido.innerHTML = "";
+
+}
+
+
+function cambiarFondoFinal() {
+
+    background.style.backgroundImage =
+        'url("/img/FondoLosTresFinal.jpg")';
+
+}
+
+
+function mostrarCelebracionFinal(){
+
+    cambiarFondoFinal();
+    lanzarConfeti();
+    lanzarDestellos();
+
+    contador.style.display = "none";
+
+    titulo.textContent = "❤️ FELIZ CUMPLEAÑOS ❤️";
+
+    mensaje.textContent = "";
+
+    contenido.innerHTML = `
+
+        <div class="fade">
+
+            <h2>
+
+                Meno llegamos al final. Se que los regalos buenos son con tu bono, y no hay sorpresa, pero al menos quería que tengas algo del lado sentimental. Capaz no parece pero atras de esto hay muchas horas de programación jaja. Meno basta de cháchara, tu premio final está arriba del botiquin del baño. Te amo, sos mi vida entera!!
+
+
+            </h2>
+
+        </div>
+
+    `;
 
 }
 
@@ -590,43 +1240,84 @@ if (etapa === 1) {
     segundos.textContent = dosDigitos(s);
 
 }
-// if (etapa === 2) {
 
-//     // Si ya llegó la hora, pasamos inmediatamente a la etapa siguiente.
-//     if (ahora >= etapa13) {
 
-//         etapa = 3;
-//         guardarEstado();
+//====================================
+// ETAPA 4
+//====================================
 
-//         // Más adelante acá llamaremos al segundo acertijo.
-//         return;
 
-//     }
+if (etapa === 4) {
 
-//     contador.style.display = "flex";
+    mostrarEspera18();
 
-//     titulo.textContent = "❤️ Nos vemos a las 13:00 ❤️";
+    const diferencia = etapa18 - ahora;
 
-//     mensaje.textContent = "Disfrutá tu primer regalo ❤️";
+    if (diferencia <= 0) {
 
-//     contenido.innerHTML = "";
+        etapa = 5;
 
-//     const diferencia = etapa13 - ahora;
+        guardarEstado();
 
-//     const d = Math.floor(diferencia / 1000 / 60 / 60 / 24);
+        mostrarEtapa();
 
-//     const h = Math.floor((diferencia / 1000 / 60 / 60) % 24);
+        return;
 
-//     const m = Math.floor((diferencia / 1000 / 60) % 60);
+    }
 
-//     const s = Math.floor((diferencia / 1000) % 60);
+    const d = Math.floor(diferencia / 1000 / 60 / 60 / 24);
 
-//     dias.textContent = dosDigitos(d);
-//     horas.textContent = dosDigitos(h);
-//     minutos.textContent = dosDigitos(m);
-//     segundos.textContent = dosDigitos(s);
+    const h = Math.floor((diferencia / 1000 / 60 / 60) % 24);
 
-// }
+    const m = Math.floor((diferencia / 1000 / 60) % 60);
+
+    const s = Math.floor((diferencia / 1000) % 60);
+
+    dias.textContent = dosDigitos(d);
+    horas.textContent = dosDigitos(h);
+    minutos.textContent = dosDigitos(m);
+    segundos.textContent = dosDigitos(s);
+
+}
+
+
+//====================================
+// ETAPA 6
+//====================================
+
+if (etapa === 6) {
+
+    mostrarEspera23();
+
+    const diferencia = etapa23 - ahora;
+
+    if (diferencia <= 0) {
+
+        etapa = 7;
+
+        guardarEstado();
+
+        mostrarEtapa();
+
+        return;
+
+    }
+
+    const d = Math.floor(diferencia / 1000 / 60 / 60 / 24);
+
+    const h = Math.floor((diferencia / 1000 / 60 / 60) % 24);
+
+    const m = Math.floor((diferencia / 1000 / 60) % 60);
+
+    const s = Math.floor((diferencia / 1000) % 60);
+
+    dias.textContent = dosDigitos(d);
+    horas.textContent = dosDigitos(h);
+    minutos.textContent = dosDigitos(m);
+    segundos.textContent = dosDigitos(s);
+
+}
+
 
 }
 
@@ -635,7 +1326,24 @@ cargarEstado();
 
 
 
-setInterval(actualizarCuentaRegresiva, 1000);
+const musicaGuardada = localStorage.getItem("musicaActual");
+
+if (
+    localStorage.getItem("musica") === "on" &&
+    musicaGuardada
+) {
+
+    iniciarMusica(musicaGuardada);
+
+}
+
+if(aventuraComenzada){
+
+    reanudarAventura();
+
+}
+
+setInterval(actualizarCuentaRegresiva,1000);
 
 actualizarCuentaRegresiva();
 
@@ -672,6 +1380,113 @@ function crearParticula() {
 
 }
 
+
+function lanzarConfeti() {
+
+    const colores = [
+
+        "#D94C6A",
+        "#F08AA2",
+        "#F5E8C7",
+        "#FFD166",
+        "#FFFFFF"
+
+    ];
+
+    let cantidad = 0;
+
+    const intervalo = setInterval(() => {
+
+        for (let i = 0; i < 12; i++) {
+
+            const papel = document.createElement("div");
+
+            papel.classList.add("confetti");
+
+            papel.style.left = Math.random() * 100 + "%";
+
+            papel.style.background =
+                colores[Math.floor(Math.random() * colores.length)];
+
+            const tamaño = Math.random() * 10 + 6;
+
+            papel.style.width = tamaño + "px";
+            papel.style.height = tamaño * 1.8 + "px";
+
+            papel.style.animationDuration =
+                (Math.random() * 2 + 4) + "s";
+
+            papel.style.transform =
+                `rotate(${Math.random() * 360}deg)`;
+
+            confetti.appendChild(papel);
+
+            papel.addEventListener("animationend", () => {
+
+                papel.remove();
+
+            });
+
+        }
+
+        cantidad++;
+
+        // 6 papeles cada 100 ms durante 5 segundos
+        if (cantidad >= 80) {
+
+            clearInterval(intervalo);
+
+        }
+
+    }, 100);
+
+}
+
+
+
+function lanzarDestellos() {
+
+    let tiempo = 0;
+
+    const intervalo = setInterval(() => {
+
+        const brillo = document.createElement("div");
+
+        brillo.classList.add("sparkle");
+
+        brillo.style.left = Math.random() * 100 + "%";
+
+        brillo.style.top = Math.random() * 100 + "%";
+
+        const tamaño = Math.random() * 10 + 6;
+
+        brillo.style.width = tamaño + "px";
+
+        brillo.style.height = tamaño + "px";
+
+        sparkles.appendChild(brillo);
+
+        brillo.addEventListener("animationend", () => {
+
+            brillo.remove();
+
+        });
+
+        tiempo += 120;
+
+        if (tiempo >= 7000) {
+
+            clearInterval(intervalo);
+
+        }
+
+    }, 120);
+
+}
+
+
+
+
 setInterval(() => {
 
     if (document.querySelectorAll(".particle").length < 35) {
@@ -687,6 +1502,31 @@ for (let i = 0; i < 25; i++) {
     crearParticula();
 
 }
+
+
+
+
+// =========================================
+// BOTÓN MÚSICA
+// =========================================
+
+btnMusica.onclick = () => {
+
+    if (musica.paused) {
+
+        musica.play();
+
+        btnMusica.textContent = "🔊";
+
+    }
+
+    else {
+
+        detenerMusica();
+
+    }
+
+};
 
 
 
@@ -707,6 +1547,16 @@ document
         if (!confirmar) return;
 
         localStorage.removeItem("cumpleMauri2026");
+        localStorage.removeItem("musica");
+        localStorage.removeItem("musicaActual");
+
+        // Vuelve al fondo inicial
+        background.style.backgroundImage =
+            'url("/img/EllosJugando.jpg")';
+
+        // Detiene la música
+        musica.pause();
+        musica.currentTime = 0;
 
         location.reload();
 
