@@ -1,0 +1,591 @@
+/* ==========================================
+   GOOGLE FONTS
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* ==========================================
+   VARIABLES
+========================================== */
+
+:root{
+
+    --color-texto:#4B362F;
+    --color-secundario:#8C6A4A;
+    --color-tarjeta:rgba(245, 239, 230, 0);
+    --color-borde:rgba(255,255,255,.25);
+
+    --sombra:0 20px 50px rgba(0,0,0,.18);
+
+}
+
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+    font-family:"Poppins",sans-serif;
+
+    color:var(--color-texto);
+
+}
+
+/* ==========================================
+   FONDO
+========================================== */
+
+#background{
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:url("/img/EllosJugando.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    z-index:-30;
+
+}
+
+#overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(245,236,222,.40);
+
+    backdrop-filter:blur(2px);
+
+    z-index:-20;
+
+}
+
+/* ==========================================
+   PARTICULAS
+========================================== */
+
+#particles{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-10;
+
+}
+
+.particle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.45);
+
+    animation:flotar linear infinite;
+
+}
+
+@keyframes flotar{
+
+    from{
+
+        transform:translateY(110vh);
+
+        opacity:0;
+
+    }
+
+    10%{
+
+        opacity:.9;
+
+    }
+
+    90%{
+
+        opacity:.9;
+
+    }
+
+    to{
+
+        transform:translateY(-20vh);
+
+        opacity:0;
+
+    }
+
+}
+
+/* ==========================================
+   CONTENEDOR
+========================================== */
+
+.contenedor{
+
+    width:min(1000px,92%);
+
+    min-height:100vh;
+
+    margin:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+/* ==========================================
+   TITULOS
+========================================== */
+
+#titulo{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:4rem;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+    color:#432E24;
+
+    text-shadow:0 2px 8px rgba(255,255,255,.5);
+
+}
+
+#mensaje{
+
+    font-size:1.1rem;
+
+    max-width:650px;
+
+    line-height:1.8;
+
+    margin-bottom:60px;
+
+    color:#5F4638;
+
+}
+
+/* ==========================================
+   CONTADOR
+========================================== */
+
+.contador{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ==========================================
+   TARJETAS
+========================================== */
+
+.card{
+
+    width:150px;
+
+    height:170px;
+
+    background:var(--color-tarjeta);
+
+    border:1px solid var(--color-borde);
+
+    border-radius:25px;
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:var(--sombra);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.card span{
+
+    font-size:3.4rem;
+
+    font-weight:600;
+
+    color:#5B4032;
+
+    font-family:"Cormorant Garamond",serif;
+
+}
+
+.card small{
+
+    margin-top:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    font-size:.8rem;
+
+    color:#8A6C54;
+
+}
+
+/* ==========================================
+   CONTENIDO
+========================================== */
+
+#contenido{
+
+    margin-top:70px;
+
+    width:100%;
+
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+input{
+
+    width:300px;
+
+    max-width:90%;
+
+    padding:15px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.85);
+
+    font-size:17px;
+
+    text-align:center;
+
+}
+
+/* ==========================================
+   BOTONES
+========================================== */
+
+button{
+
+    margin-top:25px;
+
+    padding:15px 35px;
+
+    border:none;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    background:#8D6B4D;
+
+    color:white;
+
+    font-size:16px;
+
+    transition:.30s;
+
+}
+
+button:hover{
+
+    background:#75563E;
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+   FADE
+========================================== */
+
+.fade{
+
+    animation:fade .8s;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   MEMES
+========================================== */
+
+.meme{
+
+    max-width:90%;
+    max-height:60vh;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+
+    animation:zoomMeme .55s cubic-bezier(.18,1.35,.45,1);
+
+}
+
+
+.meme.ocultar{
+
+    animation:desaparecerMeme .45s ease forwards;
+
+}
+
+@keyframes desaparecerMeme{
+
+    from{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+    to{
+
+        opacity:0;
+        transform:scale(.85);
+
+    }
+
+}
+
+@keyframes zoomMeme{
+
+    0%{
+
+        opacity:0;
+
+        transform:scale(.3);
+
+    }
+
+    60%{
+
+        opacity:1;
+
+        transform:scale(1.12);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+    #titulo{
+
+        font-size:3.2rem;
+
+    }
+
+    .card{
+
+        width:135px;
+
+        height:155px;
+
+    }
+
+}
+
+@media(max-width:650px){
+
+    #titulo{
+
+        font-size:2.6rem;
+
+    }
+
+    #mensaje{
+
+        font-size:1rem;
+
+        margin-bottom:40px;
+
+    }
+
+    .contador{
+
+        gap:15px;
+
+    }
+
+    .card{
+
+        width:120px;
+
+        height:140px;
+
+    }
+
+    .card span{
+
+        font-size:2.6rem;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .contador{
+
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:18px;
+
+    }
+
+    .card{
+
+        width:100%;
+
+    }
+
+}
+
+
+
+
+/* ==========================================
+   BOTÓN REINICIAR (SOLO DESARROLLO)
+========================================== */
+
+#btnReset{
+
+    position:fixed;
+
+    bottom:20px;
+
+    left:20px;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:42px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(8px);
+
+    color:#fff;
+
+    opacity:.25;
+
+    transition:.3s;
+
+    z-index:9999;
+
+}
+
+/* #btnReset:hover{
+
+    opacity:1;
+
+    transform:rotate(-180deg) scale(1.1);
+
+    background:rgba(255,255,255,.35);
+
+} */

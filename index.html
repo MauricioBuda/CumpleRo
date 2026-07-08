@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Se viene ❤️ </title>
+
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./src/style.css">
+
+</head>
+
+<body>
+
+    <!-- Imagen de fondo -->
+    <div id="background"></div>
+
+    <!-- Oscurece levemente la foto -->
+    <div id="overlay"></div>
+
+    <!-- Partículas -->
+    <div id="particles"></div>
+
+    <!-- Contenido principal -->
+    <main class="contenedor">
+
+        <h1 id="titulo">
+            Faltan unos pares de días
+        </h1>
+
+        <p id="mensaje">
+            Cada segundo nos acerca un poquito más...
+        </p>
+
+        <section id="contador" class="contador">
+
+            <div class="card">
+
+                <span id="dias">00</span>
+                <small>Días</small>
+
+            </div>
+
+            <div class="card">
+
+                <span id="horas">00</span>
+                <small>Horas</small>
+
+            </div>
+
+            <div class="card">
+
+                <span id="minutos">00</span>
+                <small>Minutos</small>
+
+            </div>
+
+            <div class="card">
+
+                <span id="segundos">00</span>
+                <small>Segundos</small>
+
+            </div>
+
+        </section>
+
+        <!-- Acá aparecerán los acertijos, videos y regalos -->
+        <section id="contenido"></section>
+
+    </main>
+
+
+    <button id="btnReset" title="Reiniciar aventura">
+
+    ↺
+
+</button>
+
+    <script type="module" src="./src/app.js"></script>
+
+</body>
+
+</html>
