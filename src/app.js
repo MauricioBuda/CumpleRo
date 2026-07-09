@@ -35,7 +35,7 @@ const btnMusica = document.querySelector("#btnMusica");
 // Para probar el proyecto solamente cambiá ESTA fecha.
 // Las demás etapas se calculan automáticamente.
 
-const cumpleaños = new Date(2026, 6, 19, 0, 0, 0);
+const cumpleaños = new Date(2026, 6, 7, 0, 0, 0);
 
 // ----- ETAPA 13 HS -----
 
@@ -414,7 +414,7 @@ aventuraComenzada = true;
 
 guardarEstado();
 
-iniciarMusica("/audio/etapa1.mp3");
+iniciarMusica("/audio/RAPSUSKLEI ft HORUS - SOY VIDA (PROD SOLO SOUL).m4a");
 
 iniciarIntroduccion();
 
@@ -865,7 +865,7 @@ document
 
         guardarEstado();
 
-        iniciarMusica("/audio/etapa2.mp3");
+        iniciarMusica("/audio/Canserbero - De la vida como película y su tragedia comedia y ficción LETRA.m4a");
 
         mostrarPregunta();
 
@@ -913,7 +913,7 @@ document
 
         guardarEstado();
 
-        iniciarMusica("/audio/etapa3.mp3");
+        iniciarMusica("/audio/Los Piojos - Bicho de Ciudad (Video oficial).m4a");
 
         mostrarPregunta();
 
@@ -962,7 +962,7 @@ document
 
         guardarEstado();
 
-        iniciarMusica("/audio/final.mp3");
+        iniciarMusica("/audio/John Legend - All of Me (Official Video).m4a");
 
         mostrarPregunta();
 
