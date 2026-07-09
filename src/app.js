@@ -35,7 +35,7 @@ const btnMusica = document.querySelector("#btnMusica");
 // Para probar el proyecto solamente cambiá ESTA fecha.
 // Las demás etapas se calculan automáticamente.
 
-const cumpleaños = new Date(2026, 6, 7, 0, 0, 0);
+const cumpleaños = new Date(2026, 6, 19, 0, 0, 0);
 
 // ----- ETAPA 13 HS -----
 
