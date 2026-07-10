@@ -35,7 +35,7 @@ const btnMusica = document.querySelector("#btnMusica");
 // Para probar el proyecto solamente cambiá ESTA fecha.
 // Las demás etapas se calculan automáticamente.
 
-const cumpleaños = new Date(2026, 6, 7, 0, 0, 0);
+const cumpleaños = new Date(2026, 6, 19, 0, 0, 0);
 
 // ----- ETAPA 13 HS -----
 
@@ -1133,7 +1133,7 @@ function mostrarCelebracionFinal(){
 
             <h2>
 
-                Meno llegamos al final. Se que los regalos buenos son con tu bono, y no hay sorpresa, pero al menos quería que tengas algo del lado sentimental. Capaz no parece pero atras de esto hay muchas horas de programación jaja. Meno basta de cháchara, tu premio final está arriba del botiquin del baño. Te amo, sos mi vida entera!!
+                Felicitaciones!! Llegamos al final. Se que los regalos buenos son con tu bono, pero al menos quería que tengas algo del lado sentimental. Capaz no parece pero atras de esto hay muchas horas de programación jaja. Meno basta de cháchara, tu premio final está arriba del botiquin del baño. Jamás te vas a imaginar lo que representas en mi vida, sos literalmente todo. Te amo, para siempre y todas las vidas!!
 
 
             </h2>
