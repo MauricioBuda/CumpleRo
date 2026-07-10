@@ -205,7 +205,7 @@ const preguntasEtapa1 = [
         respuesta: "Puerro",
 
         memeCorrecto: "/img/memes/etapa00/correcto2.png",
-        memeIncorrecto: "/img/memes/incorrecto2.png"
+        memeIncorrecto: "/img/memes/etapa00/incorrecto2.png"
     },
 
     {
@@ -228,7 +228,7 @@ const preguntasEtapa2 = [
         pregunta: "Mes en el que nos conocimos",
         respuesta: "Agosto",
 
-        memeCorrecto: "/img/memes/etapa13/correcto1.png",
+        memeCorrecto: "/img/memes/etapa13/correcto1.jpg",
         memeIncorrecto: "/img/memes/etapa13/incorrecto1.jpg"
 
     },
@@ -238,8 +238,8 @@ const preguntasEtapa2 = [
         pregunta: "(Mi número preferido de la ruleta) x (Día que salimos para el viaje de egresados) - (Tu día de cumple) x (Mi dia de cumple)",
         respuesta: "59",
 
-        memeCorrecto: "/img/memes/etapa13/correcto2.png",
-        memeIncorrecto: "/img/memes/etapa13/incorrecto2.png"
+        memeCorrecto: "/img/memes/etapa13/correcto2.jpg",
+        memeIncorrecto: "/img/memes/etapa13/incorrecto2.jpg"
 
     },
 
@@ -248,8 +248,8 @@ const preguntasEtapa2 = [
         pregunta: "Primer apodo de la gorda (diminutivo)",
         respuesta: "Carbonsito",
 
-        memeCorrecto: "/img/memes/etapa13/correcto3.png",
-        memeIncorrecto: "/img/memes/etapa13/incorrecto3.png"
+        memeCorrecto: "/img/memes/etapa13/correcto3.jpg",
+        memeIncorrecto: "/img/memes/etapa13/incorrecto3.jpg"
 
     }
 
@@ -265,7 +265,7 @@ const preguntasEtapa3 = [
         pregunta: "(La cantidad de letras de tus nombres + apellido) + (Lo mismo pero con mis datos) + (mi DNI - tu DNI)",
         respuesta: "885502",
 
-        memeCorrecto: "/img/memes/etapa18/correcto1.png",
+        memeCorrecto: "/img/memes/etapa18/correcto1.jpg",
         memeIncorrecto: "/img/memes/incorrecto1.jpg"
 
     },
@@ -275,8 +275,8 @@ const preguntasEtapa3 = [
         pregunta: "Apodo del único novio registrado de kika",
         respuesta: "Mexicano",
 
-        memeCorrecto: "/img/memes/etapa18/correcto2.png",
-        memeIncorrecto: "/img/memes/etapa18/incorrecto2.png"
+        memeCorrecto: "/img/memes/etapa18/correcto2.jpg",
+        memeIncorrecto: "/img/memes/etapa18/incorrecto2.jpg"
 
     },
 
@@ -285,8 +285,8 @@ const preguntasEtapa3 = [
         pregunta: "Uno de los emprendimientos de nuestro angelito papin (se que hay varios, pero es uno solo el correcto acá)",
         respuesta: "El rey goma",
 
-        memeCorrecto: "/img/memes/etapa18/correcto3.png",
-        memeIncorrecto: "/img/memes/etapa18/incorrecto3.png"
+        memeCorrecto: "/img/memes/etapa18/correcto3.jpg",
+        memeIncorrecto: "/img/memes/etapa18/incorrecto3.jpg"
 
     }
 
@@ -300,7 +300,7 @@ const preguntasEtapaFinal = [
         pregunta: "Frase épica de tu papá el día que le preguntamos si quería algo del chino",
         respuesta: "Crema de leche",
 
-        memeCorrecto: "/img/memes/etapa23/correcto1.png",
+        memeCorrecto: "/img/memes/etapa23/correcto1.jpg",
         memeIncorrecto: "/img/memes/etapa23/incorrecto1.jpg"
 
     },
@@ -310,8 +310,8 @@ const preguntasEtapaFinal = [
         pregunta: "Suma de cada uno de los número de mi DNI",
         respuesta: "38",
 
-        memeCorrecto: "/img/memes/etapa23/correcto2.png",
-        memeIncorrecto: "/img/memes/etapa23/incorrecto2.png"
+        memeCorrecto: "/img/memes/etapa23/correcto2.jpg",
+        memeIncorrecto: "/img/memes/etapa23/incorrecto2.jpg"
 
     },
 
@@ -320,8 +320,8 @@ const preguntasEtapaFinal = [
         pregunta: "Quien dijo TE AMO primero? Mauri o roci?",
         respuesta: "Mauri",
 
-        memeCorrecto: "/img/memes/etapa23/correcto3.png",
-        memeIncorrecto: "/img/memes/etapa23/incorrecto3.png"
+        memeCorrecto: "/img/memes/etapa23/correcto3.jpg",
+        memeIncorrecto: "/img/memes/etapa23/incorrecto3.jpg"
 
     }
 
