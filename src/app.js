@@ -350,15 +350,15 @@ function obtenerMensaje(restante) {
     }
 
     if (diasRestantes > 3) {
-        return "Menos de una semana más... prometo que la espera va a valer la pena.";
+        return "Menos de una semana... prometo que la espera va a valer la pena (espero)";
     }
 
     if (diasRestantes > 1) {
-        return "Ya casi puedo dejar de guardar el secreto.";
+        return "Ya casi puedo dejar de guardar el secreto! Ah re que sabes todo ya";
     }
 
     if (diasRestantes > 0.02) {
-        return "Mañana empieza esta pequeña aventura.";
+        return "Mañana empieza esta pequeña aventura jeje";
     }
 
     return "Respirá hondo... estamos a segundos de comenzar.";
