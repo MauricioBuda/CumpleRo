@@ -307,8 +307,8 @@ const preguntasEtapaFinal = [
 
     {
 
-        pregunta: "Suma de cada uno de los número de mi DNI",
-        respuesta: "38",
+        pregunta: "Suma de las edades que teníamos al conocernos",
+        respuesta: "35",
 
         memeCorrecto: "/img/memes/etapa23/correcto2.jpg",
         memeIncorrecto: "/img/memes/etapa23/incorrecto2.jpg"
@@ -317,8 +317,8 @@ const preguntasEtapaFinal = [
 
     {
 
-        pregunta: "Quien dijo TE AMO primero? Mauri o roci?",
-        respuesta: "Mauri",
+        pregunta: "Como dice siempre Grisa que estaba yo, cuando mis papas me dejaron en Mar del Tuyu",
+        respuesta: "Raquitico",
 
         memeCorrecto: "/img/memes/etapa23/correcto3.jpg",
         memeIncorrecto: "/img/memes/etapa23/incorrecto3.jpg"
