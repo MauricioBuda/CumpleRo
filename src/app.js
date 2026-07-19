@@ -337,31 +337,77 @@ let preguntas = preguntasEtapa1;
 // MENSAJES
 // =========================================
 
-function obtenerMensaje(restante) {
+function obtenerEstadoCuentaRegresiva(restante) {
 
     const diasRestantes = restante / 1000 / 60 / 60 / 24;
 
     if (diasRestantes > 10) {
-        return "Paciencia, todavía faltan:";
+
+        return {
+
+            titulo: "Faltan varios días",
+
+            mensaje: "Paciencia, todavía faltan:"
+
+        };
+
     }
 
     if (diasRestantes > 7) {
-        return "Cada segundo nos acerca un poquito más.";
+
+        return {
+
+            titulo: "Faltan varios días",
+
+            mensaje: "Cada segundo nos acerca un poquito más."
+
+        };
+
     }
 
     if (diasRestantes > 3) {
-        return "Menos de una semana... prometo que la espera va a valer la pena (espero)";
+
+        return {
+
+            titulo: "Cada vez falta menos ❤️",
+
+            mensaje: "Menos de una semana... prometo que la espera va a valer la pena (espero)"
+
+        };
+
     }
 
     if (diasRestantes > 1) {
-        return "Ya casi puedo dejar de guardar el secreto! Ah re que sabes todo ya";
+
+        return {
+
+            titulo: "Ya casi ❤️",
+
+            mensaje: "Ya casi puedo dejar de guardar el secreto! Ah re que sabes todo ya"
+
+        };
+
     }
 
     if (diasRestantes > 0.02) {
-        return "Mañana empieza esta pequeña aventura jeje";
+
+        return {
+
+            titulo: "❤️ En un ratico!! ❤️",
+
+            mensaje: "Ya casi empieza esta pequeña aventura jeje"
+
+        };
+
     }
 
-    return "Respirá hondo... estamos a segundos de comenzar.";
+    return {
+
+        titulo: "❤️ Ya casi ❤️",
+
+        mensaje: "Dale Rosetaaaaaaaaaaa"
+
+    };
 
 }
 
@@ -509,6 +555,7 @@ function terminarEtapa() {
                         Demostraste una gran sabiduría.
                         El premio a esta hazaña lo vas a encontrar
                         adentro de una cartera tuya 😏
+                        Son regalitos pequeños, pero con mucho amor ❤️
 
                     </h2>
 
@@ -1158,31 +1205,34 @@ function actualizarCuentaRegresiva() {
     // ANTES DEL CUMPLEAÑOS
     //====================================
 
-    if (ahora < cumpleaños) {
+if (ahora < cumpleaños) {
 
-        contador.style.display = "flex";
+    contador.style.display = "flex";
 
-        const diferencia = cumpleaños - ahora;
+    const diferencia = cumpleaños - ahora;
 
+    const d = Math.floor(diferencia / 1000 / 60 / 60 / 24);
 
-        const d = Math.floor(diferencia / 1000 / 60 / 60 / 24);
+    const h = Math.floor((diferencia / 1000 / 60 / 60) % 24);
 
-        const h = Math.floor((diferencia / 1000 / 60 / 60) % 24);
+    const m = Math.floor((diferencia / 1000 / 60) % 60);
 
-        const m = Math.floor((diferencia / 1000 / 60) % 60);
+    const s = Math.floor((diferencia / 1000) % 60);
 
-        const s = Math.floor((diferencia / 1000) % 60);
+    dias.textContent = dosDigitos(d);
+    horas.textContent = dosDigitos(h);
+    minutos.textContent = dosDigitos(m);
+    segundos.textContent = dosDigitos(s);
 
-        dias.textContent = dosDigitos(d);
-        horas.textContent = dosDigitos(h);
-        minutos.textContent = dosDigitos(m);
-        segundos.textContent = dosDigitos(s);
+    const estado = obtenerEstadoCuentaRegresiva(diferencia);
 
-        mensaje.textContent = obtenerMensaje(diferencia);
+    titulo.textContent = estado.titulo;
 
-        return;
+    mensaje.textContent = estado.mensaje;
 
-    }
+    return;
+
+}
 
     //====================================
     // PRIMERA VEZ
