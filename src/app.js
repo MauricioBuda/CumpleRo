@@ -50,7 +50,7 @@ etapa18.setHours(18, 0, 0, 0);
 // ----- ETAPA 23 HS -----
 
 const etapa23 = new Date(cumpleaños);
-etapa23.setHours(23, 0, 0, 0);
+etapa23.setHours(21, 0, 0, 0);
 
 // =========================================
 // ESTADO
@@ -977,7 +977,7 @@ document
 
 case 7:
 
-    titulo.textContent = "❤️ Ya son las 23:00 ❤️";
+    titulo.textContent = "❤️ Ya son las 21:00 ❤️";
 
     mensaje.textContent = "Última sorpresa... ❤️";
 
@@ -1145,7 +1145,7 @@ function mostrarEspera23(){
 
     contador.style.display = "flex";
 
-    titulo.textContent = "❤️ Nos vemos a las 23:00 ❤️";
+    titulo.textContent = "❤️ Nos vemos a las 21:00 ❤️";
 
     mensaje.textContent = "Ya falta muy poquito ❤️";
 
