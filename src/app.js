@@ -266,7 +266,7 @@ const preguntasEtapa3 = [
         respuesta: "885502",
 
         memeCorrecto: "/img/memes/etapa18/correcto1.jpg",
-        memeIncorrecto: "/img/memes/incorrecto1.jpg"
+        memeIncorrecto: "/img/memes/etapa18/incorrecto1.jpg"
 
     },
 
